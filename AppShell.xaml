@@ -6,10 +6,17 @@
     xmlns:local="clr-namespace:TODOApp"
     Shell.FlyoutBehavior="Disabled">
 
-    <ShellContent
-        Title="Home"
-        ContentTemplate="{DataTemplate local:MainPage}"
-        Route="MainPage" />
-
+    <TabBar>
+        <ShellContent
+            Title="Home"
+            Icon="todo.png"
+            ContentTemplate="{DataTemplate local:MainPage}"
+            Route="MainPage" />
+        <ShellContent
+            Title="Completed"
+            Icon="completed.png"
+            ContentTemplate="{DataTemplate local:Views.Completed}"
+            Route="Completed" />
+    </TabBar>
 </Shell>
 

@@ -5,8 +5,9 @@
              xmlns:model="clr-namespace:TODOApp.Models"
              xmlns:viewmodel="clr-namespace:TODOApp.ViewModels"
              x:DataType="viewmodel:TaskViewModel"
-             Shell.NavBarIsVisible="False"
-             Padding="20">
+             Title="Home"
+             Padding="20,20,20,0"
+             >
 
     <Grid>
          <Grid.RowDefinitions>
@@ -23,23 +24,30 @@
                 Keyboard="Plain" />
             <Button x:Name="AddTodoButton" IsEnabled="{Binding AddEnabled}" Text="Add" HorizontalOptions="Fill" Margin="5,0,0,0" Padding="32,0,32,0" FontSize="16" Command="{Binding AddTodoCommand}" />
         </FlexLayout>
-        <CollectionView ItemsSource="{Binding Todos}" Grid.Row="1" Margin="0,10,0,10" EmptyView="No Todos to display">
-            <CollectionView.ItemTemplate>
-                <DataTemplate x:DataType="model:TODO">
-                    <VerticalStackLayout>
-                        <FlexLayout AlignItems="Center" JustifyContent="Center" MinimumHeightRequest="50">
-                            <Entry FlexLayout.Grow="1" Text="{Binding Title}" IsReadOnly="True" HeightRequest="30" Margin="0,5,0,5"/>
-                            <ImageButton Source="edit.png" Padding="10" WidthRequest="5" HeightRequest="5" BackgroundColor="White" CornerRadius="5" Margin="3,0,3,0"></ImageButton>
-                            <ImageButton
-                                Command="{Binding Source={RelativeSource AncestorType={x:Type viewmodel:TaskViewModel}}, Path=DeleteTodoCommand}"
-                                CommandParameter="{Binding .}"
-                                Source="delete.png" Padding="10" WidthRequest="5" HeightRequest="5" BackgroundColor="White"
-                                CornerRadius="5"/>
-                        </FlexLayout>
-                    </VerticalStackLayout>
-                </DataTemplate>
-            </CollectionView.ItemTemplate>
-        </CollectionView>
+        <ScrollView Grid.Row="1" Margin="0,10,0,0">
+            <CollectionView ItemsSource="{Binding Todos}" EmptyView="No Todos to display">
+                <CollectionView.ItemTemplate>
+                    <DataTemplate x:DataType="model:TODO">
+                        <VerticalStackLayout>
+                            <FlexLayout AlignItems="Center" JustifyContent="Center" MinimumHeightRequest="50">
+                                <Entry FlexLayout.Grow="1" Text="{Binding Title}" IsReadOnly="True" HeightRequest="30" Margin="0,5,0,5"/>
+                                <Label Text="{Binding IsCompleted}"/>
+                                <ImageButton
+                                    Command="{Binding Source={RelativeSource AncestorType={x:Type viewmodel:TaskViewModel}}, Path=DeleteTodoCommand}"
+                                    CommandParameter="{Binding Id}"
+                                    Source="delete.png" Padding="10" WidthRequest="5" HeightRequest="5" BackgroundColor="White"
+                                    Margin="3,0,3,0"
+                                    CornerRadius="5"/>
+                                <ImageButton
+                                    Command="{Binding Source={RelativeSource AncestorType={x:Type viewmodel:TaskViewModel}}, Path=CompleteTodoCommand}"
+                                    CommandParameter="{Binding Id}"
+                                    Source="done.png" Padding="10" WidthRequest="5" HeightRequest="5" BackgroundColor="White" CornerRadius="5"></ImageButton>
+                            </FlexLayout>
+                        </VerticalStackLayout>
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+            </CollectionView>
+        </ScrollView>
     </Grid>
 
 </ContentPage>

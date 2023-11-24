@@ -1,17 +1,8 @@
-﻿using CommunityToolkit.Mvvm.Input;
-using System.Windows.Input;
+﻿namespace TODOApp.Models;
 
-namespace TODOApp.Models;
-
-public record TODO (
-    string Title,
-    bool IsCompleted
-)
+public class TODO
 {
-    private RelayCommand deleteTodoCommand;
-    public ICommand DeleteTodoCommand => deleteTodoCommand ??= new RelayCommand(DeleteTodo);
-
-    private void DeleteTodo()
-    {
-    }
-}
+    public Guid Id { get; set; }
+    public string Title { get; set; }
+    public bool IsCompleted { get; set; }
+};

@@ -28,17 +28,29 @@ internal partial class TaskViewModel : ObservableObject
     [RelayCommand]
 	void AddTodo()
 	{
-        Todos.Add(new TODO(
-            Title: Todo,
-            IsCompleted: false
-        ));
+        TODO todoItem = new TODO
+        {
+            Id = Guid.NewGuid(),
+            Title = Todo,
+            IsCompleted = false
+        };
+        Todos.Add(todoItem);
         Todo = "";
     }
 
     [RelayCommand]
-    void DeleteTodo(TODO todo)
+    void DeleteTodo(Guid id)
     {
-        var updatedTodos = Todos.Where(_todo => _todo.Title != todo.Title).ToList();
+        var updatedTodos = Todos.Where(todo => todo.Id != id).ToList();
+        Todos = new ObservableCollection<TODO>(updatedTodos);
+    }
+
+    [RelayCommand]
+    void CompleteTodo(Guid id)
+    {
+        var updatedTodos = Todos.ToList();
+        var todoToUpdate = updatedTodos.FirstOrDefault(todo => todo.Id == id);
+        todoToUpdate.IsCompleted = true;
         Todos = new ObservableCollection<TODO>(updatedTodos);
     }
 }
