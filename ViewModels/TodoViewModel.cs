@@ -14,7 +14,11 @@ internal partial class TaskViewModel : ObservableObject
     bool addEnabled = false;
 
     [ObservableProperty]
-    ObservableCollection<TODO> todos = new();
+    [NotifyPropertyChangedFor(nameof(IncompletedTodos)), NotifyPropertyChangedFor(nameof(CompletedTodos))]
+    public ObservableCollection<TODO> todos = new();
+
+    public ObservableCollection<TODO> IncompletedTodos => new ObservableCollection<TODO>(Todos.Where(todo => !todo.IsCompleted));
+    public ObservableCollection<TODO> CompletedTodos => new ObservableCollection<TODO>(Todos.Where(todo => todo.IsCompleted));
 
     partial void OnTodoChanged(string value)
     {
@@ -28,7 +32,8 @@ internal partial class TaskViewModel : ObservableObject
     [RelayCommand]
 	void AddTodo()
 	{
-        TODO todoItem = new TODO
+        //Console.WriteLine(IncompletedTodos.Count);
+        TODO todoItem = new()
         {
             Id = Guid.NewGuid(),
             Title = Todo,

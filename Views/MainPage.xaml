@@ -6,7 +6,7 @@
              xmlns:viewmodel="clr-namespace:TODOApp.ViewModels"
              x:DataType="viewmodel:TaskViewModel"
              Title="Home"
-             Padding="20,20,20,0"
+             Padding="20"
              >
 
     <Grid>
@@ -25,13 +25,12 @@
             <Button x:Name="AddTodoButton" IsEnabled="{Binding AddEnabled}" Text="Add" HorizontalOptions="Fill" Margin="5,0,0,0" Padding="32,0,32,0" FontSize="16" Command="{Binding AddTodoCommand}" />
         </FlexLayout>
         <ScrollView Grid.Row="1" Margin="0,10,0,0">
-            <CollectionView ItemsSource="{Binding Todos}" EmptyView="No Todos to display">
+            <CollectionView ItemsSource="{Binding IncompletedTodos}" EmptyView="No Todos to display">
                 <CollectionView.ItemTemplate>
                     <DataTemplate x:DataType="model:TODO">
                         <VerticalStackLayout>
                             <FlexLayout AlignItems="Center" JustifyContent="Center" MinimumHeightRequest="50">
                                 <Entry FlexLayout.Grow="1" Text="{Binding Title}" IsReadOnly="True" HeightRequest="30" Margin="0,5,0,5"/>
-                                <Label Text="{Binding IsCompleted}"/>
                                 <ImageButton
                                     Command="{Binding Source={RelativeSource AncestorType={x:Type viewmodel:TaskViewModel}}, Path=DeleteTodoCommand}"
                                     CommandParameter="{Binding Id}"
