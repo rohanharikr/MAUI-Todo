@@ -14,11 +14,13 @@ public partial class TaskViewModel : ObservableObject
     bool addEnabled = false;
 
     [ObservableProperty]
-    [NotifyPropertyChangedFor(nameof(IncompletedTodos)), NotifyPropertyChangedFor(nameof(CompletedTodos))]
     public ObservableCollection<TODO> todos = new();
 
-    public ObservableCollection<TODO> IncompletedTodos => new ObservableCollection<TODO>(Todos.Where(todo => !todo.IsCompleted));
-    public ObservableCollection<TODO> CompletedTodos => new ObservableCollection<TODO>(Todos.Where(todo => todo.IsCompleted));
+    [ObservableProperty]
+    public ObservableCollection<TODO> incompletedTodos = new();
+
+    [ObservableProperty]
+    public ObservableCollection<TODO> completedTodos = new();
 
     partial void OnTodoChanged(string value)
     {
@@ -41,6 +43,14 @@ public partial class TaskViewModel : ObservableObject
         };
         Todos.Add(todoItem);
         Todo = "";
+
+        IncompletedTodos.Clear();
+        foreach (var todo in Todos.Where(todo => !todo.IsCompleted))
+            IncompletedTodos.Add(todo);
+
+        CompletedTodos.Clear();
+        foreach (var todo in Todos.Where(todo => todo.IsCompleted))
+            CompletedTodos.Add(todo);
     }
 
     [RelayCommand]
@@ -48,6 +58,14 @@ public partial class TaskViewModel : ObservableObject
     {
         var updatedTodos = Todos.Where(todo => todo.Id != id).ToList();
         Todos = new ObservableCollection<TODO>(updatedTodos);
+
+        IncompletedTodos.Clear();
+        foreach (var todo in Todos.Where(todo => !todo.IsCompleted))
+            IncompletedTodos.Add(todo);
+
+        CompletedTodos.Clear();
+        foreach (var todo in Todos.Where(todo => todo.IsCompleted))
+            CompletedTodos.Add(todo);
     }
 
     [RelayCommand]
@@ -57,6 +75,14 @@ public partial class TaskViewModel : ObservableObject
         var todoToUpdate = updatedTodos.FirstOrDefault(todo => todo.Id == id);
         todoToUpdate.IsCompleted = true;
         Todos = new ObservableCollection<TODO>(updatedTodos);
+
+        IncompletedTodos.Clear();
+        foreach (var todo in Todos.Where(todo => !todo.IsCompleted))
+            IncompletedTodos.Add(todo);
+
+        CompletedTodos.Clear();
+        foreach (var todo in Todos.Where(todo => todo.IsCompleted))
+            CompletedTodos.Add(todo);
     }
 }
 
