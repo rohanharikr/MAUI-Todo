@@ -5,7 +5,7 @@ using TODOApp.Models;
 
 namespace TODOApp.ViewModels;
 
-internal partial class TaskViewModel : ObservableObject
+public partial class TaskViewModel : ObservableObject
 {
     [ObservableProperty]
 	string todo;

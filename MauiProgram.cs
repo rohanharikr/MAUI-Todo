@@ -1,4 +1,6 @@
 ﻿using Microsoft.Extensions.Logging;
+using TODOApp.ViewModels;
+using TODOApp.Views;
 
 namespace TODOApp;
 
@@ -15,8 +17,12 @@ public static class MauiProgram
 				fonts.AddFont("OpenSans-Semibold.ttf", "OpenSansSemibold");
 			});
 
+		builder.Services.AddSingleton<TaskViewModel>();
+        builder.Services.AddSingleton<MainPage>();
+        builder.Services.AddSingleton<Completed>();
+
 #if DEBUG
-		builder.Logging.AddDebug();
+        builder.Logging.AddDebug();
 #endif
 
 		return builder.Build();

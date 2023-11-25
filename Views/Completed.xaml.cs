@@ -4,9 +4,9 @@ namespace TODOApp.Views;
 
 public partial class Completed : ContentPage
 {
-	public Completed()
+	public Completed(TaskViewModel vm)
 	{
 		InitializeComponent();
-		BindingContext = new TaskViewModel();
+		BindingContext = vm;
     }
 }

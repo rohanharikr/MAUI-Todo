@@ -4,10 +4,10 @@ namespace TODOApp;
 
 public partial class MainPage : ContentPage
 {
-	public MainPage()
+	public MainPage(TaskViewModel vm)
 	{
 		InitializeComponent();
-		BindingContext = new TaskViewModel();
+		BindingContext = vm;
 
 		//focus todo input after adding todo
 		TodoEntry.Loaded += FocusTodoEntry; //on load
