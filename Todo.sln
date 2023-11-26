@@ -3,7 +3,9 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 25.0.1706.7
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Todo", "Todo.csproj", "{013A7DEF-E472-4340-B857-403718FF0161}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Todo", "Todo\Todo.csproj", "{22527F1C-7F40-486D-8958-04DE87F69868}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UITests", "UITests\UITests.csproj", "{48468BA1-54A9-4929-8CBD-8A8C7C6F48FD}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -11,10 +13,14 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{013A7DEF-E472-4340-B857-403718FF0161}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{013A7DEF-E472-4340-B857-403718FF0161}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{013A7DEF-E472-4340-B857-403718FF0161}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{013A7DEF-E472-4340-B857-403718FF0161}.Release|Any CPU.Build.0 = Release|Any CPU
+		{22527F1C-7F40-486D-8958-04DE87F69868}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{22527F1C-7F40-486D-8958-04DE87F69868}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{22527F1C-7F40-486D-8958-04DE87F69868}.Release|Any CPU.Build.0 = Release|Any CPU
+		{22527F1C-7F40-486D-8958-04DE87F69868}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{48468BA1-54A9-4929-8CBD-8A8C7C6F48FD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{48468BA1-54A9-4929-8CBD-8A8C7C6F48FD}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{48468BA1-54A9-4929-8CBD-8A8C7C6F48FD}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{48468BA1-54A9-4929-8CBD-8A8C7C6F48FD}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
