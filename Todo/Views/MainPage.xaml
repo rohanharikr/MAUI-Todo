@@ -18,11 +18,12 @@
          <FlexLayout Grid.Row="0">
             <Entry
                 x:Name="TodoEntry"
+                AutomationId="TodoEntry"
                 Text="{Binding Todo}"
                 ReturnCommand="{Binding AddTodoCommand}"
                 Placeholder="Enter Todo" FlexLayout.Grow="1"
                 Keyboard="Plain" />
-            <Button x:Name="AddTodoButton" IsEnabled="{Binding AddEnabled}" Text="Add" HorizontalOptions="Fill" Margin="5,0,0,0" Padding="32,0,32,0" FontSize="16" Command="{Binding AddTodoCommand}" />
+            <Button x:Name="AddTodoButton" AutomationId="AddTodoButton" IsEnabled="{Binding AddEnabled}" Text="Add" HorizontalOptions="Fill" Margin="5,0,0,0" Padding="32,0,32,0" FontSize="16" Command="{Binding AddTodoCommand}" />
         </FlexLayout>
         <ScrollView Grid.Row="1" Margin="0,10,0,0">
             <CollectionView ItemsSource="{Binding IncompletedTodos}" EmptyView="No Todos to display">
