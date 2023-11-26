@@ -2,6 +2,7 @@
 using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
 using TODOApp.Models;
+using System.Linq;
 
 namespace TODOApp.ViewModels;
 
@@ -16,11 +17,17 @@ public partial class TaskViewModel : ObservableObject
     [ObservableProperty]
     public ObservableCollection<TODO> todos = new();
 
-    [ObservableProperty]
-    public ObservableCollection<TODO> incompletedTodos = new();
+    public IEnumerable<TODO> IncompletedTodos => Todos.Where(todo => !todo.IsCompleted);
+    public IEnumerable<TODO> CompletedTodos => Todos.Where(todo => todo.IsCompleted);
 
-    [ObservableProperty]
-    public ObservableCollection<TODO> completedTodos = new();
+    public TaskViewModel()
+    {
+        Todos.CollectionChanged += (s, e) =>
+        {
+            OnPropertyChanged(nameof(IncompletedTodos));
+            OnPropertyChanged(nameof(CompletedTodos));
+        };
+    }
 
     partial void OnTodoChanged(string value)
     {
@@ -34,7 +41,6 @@ public partial class TaskViewModel : ObservableObject
     [RelayCommand]
 	void AddTodo()
 	{
-        //Console.WriteLine(IncompletedTodos.Count);
         TODO todoItem = new()
         {
             Id = Guid.NewGuid(),
@@ -43,46 +49,19 @@ public partial class TaskViewModel : ObservableObject
         };
         Todos.Add(todoItem);
         Todo = "";
-
-        IncompletedTodos.Clear();
-        foreach (var todo in Todos.Where(todo => !todo.IsCompleted))
-            IncompletedTodos.Add(todo);
-
-        CompletedTodos.Clear();
-        foreach (var todo in Todos.Where(todo => todo.IsCompleted))
-            CompletedTodos.Add(todo);
     }
 
     [RelayCommand]
-    void DeleteTodo(Guid id)
-    {
-        var updatedTodos = Todos.Where(todo => todo.Id != id).ToList();
-        Todos = new ObservableCollection<TODO>(updatedTodos);
-
-        IncompletedTodos.Clear();
-        foreach (var todo in Todos.Where(todo => !todo.IsCompleted))
-            IncompletedTodos.Add(todo);
-
-        CompletedTodos.Clear();
-        foreach (var todo in Todos.Where(todo => todo.IsCompleted))
-            CompletedTodos.Add(todo);
-    }
+    void DeleteTodo(TODO todo) => Todos.Remove(todo);
 
     [RelayCommand]
-    void CompleteTodo(Guid id)
+    void CompleteTodo(TODO todo)
     {
-        var updatedTodos = Todos.ToList();
-        var todoToUpdate = updatedTodos.FirstOrDefault(todo => todo.Id == id);
-        todoToUpdate.IsCompleted = true;
-        Todos = new ObservableCollection<TODO>(updatedTodos);
+        todo.IsCompleted = true;
 
-        IncompletedTodos.Clear();
-        foreach (var todo in Todos.Where(todo => !todo.IsCompleted))
-            IncompletedTodos.Add(todo);
-
-        CompletedTodos.Clear();
-        foreach (var todo in Todos.Where(todo => todo.IsCompleted))
-            CompletedTodos.Add(todo);
+        //TBD 
+        OnPropertyChanged(nameof(IncompletedTodos));
+        OnPropertyChanged(nameof(CompletedTodos));
     }
 }
 
