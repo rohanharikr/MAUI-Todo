@@ -41,6 +41,9 @@ public partial class TaskViewModel : ObservableObject
     [RelayCommand]
 	void AddTodo()
 	{
+        if (!AddEnabled)
+            return;
+
         TODO todoItem = new()
         {
             Id = Guid.NewGuid(),

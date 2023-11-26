@@ -30,7 +30,7 @@
                     <DataTemplate x:DataType="model:TODO">
                         <VerticalStackLayout>
                             <FlexLayout AlignItems="Center" JustifyContent="Center" MinimumHeightRequest="50">
-                                <Entry FlexLayout.Grow="1" Text="{Binding Title}" IsReadOnly="True" HeightRequest="30" Margin="0,5,0,5"/>
+                                <Entry FlexLayout.Grow="1" Text="{Binding Title}" IsReadOnly="False" HeightRequest="30" Margin="0,5,0,5"/>
                                 <ImageButton
                                     Command="{Binding Source={RelativeSource AncestorType={x:Type viewmodel:TaskViewModel}}, Path=DeleteTodoCommand}"
                                     CommandParameter="{Binding .}"
