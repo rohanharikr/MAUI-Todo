@@ -26,10 +26,10 @@
             <Button x:Name="AddTodoButton" AutomationId="AddTodoButton" IsEnabled="{Binding AddEnabled}" Text="Add" HorizontalOptions="Fill" Margin="5,0,0,0" Padding="32,0,32,0" FontSize="16" Command="{Binding AddTodoCommand}" />
         </FlexLayout>
         <ScrollView Grid.Row="1" Margin="0,10,0,0">
-            <CollectionView ItemsSource="{Binding IncompletedTodos}" EmptyView="No Todos to display">
+            <CollectionView AutomationId="TodoList" ItemsSource="{Binding IncompletedTodos}" EmptyView="No Todos to display">
                 <CollectionView.ItemTemplate>
                     <DataTemplate x:DataType="model:TODO">
-                        <VerticalStackLayout>
+                        <VerticalStackLayout AutomationId="Todo">
                             <FlexLayout AlignItems="Center" JustifyContent="Center" MinimumHeightRequest="50">
                                 <Entry FlexLayout.Grow="1" Text="{Binding Title}" IsReadOnly="False" HeightRequest="30" Margin="0,5,0,5" Keyboard="Plain" />
                                 <ImageButton

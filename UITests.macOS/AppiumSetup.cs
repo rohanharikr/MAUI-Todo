@@ -27,7 +27,7 @@ public class AppiumSetup
 			// Always Mac for Mac
 			PlatformName = "Mac",
 			// The full path to the .app file to test
-			App = "/Users/agro/rohanharikr/TODOApp/Todo/bin/Debug/net7.0-maccatalyst/maccatalyst-x64/Todo.app",
+			App = "../Todo/bin/Debug/net7.0-maccatalyst/maccatalyst-x64/Todo.app",
         };
 
 		// Setting the Bundle ID is required, else the automation will run on Finder
