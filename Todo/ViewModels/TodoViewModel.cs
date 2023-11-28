@@ -2,14 +2,13 @@
 using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
 using TODOApp.Models;
-using System.Linq;
 
 namespace TODOApp.ViewModels;
 
 public partial class TaskViewModel : ObservableObject
 {
     [ObservableProperty]
-	string todo;
+	public string todo;
 
     [ObservableProperty]
     bool addEnabled = false;
@@ -39,7 +38,7 @@ public partial class TaskViewModel : ObservableObject
     }
 
     [RelayCommand]
-	void AddTodo()
+	public void AddTodo()
 	{
         if (!AddEnabled)
             return;
@@ -61,6 +60,16 @@ public partial class TaskViewModel : ObservableObject
     void CompleteTodo(TODO todo)
     {
         todo.IsCompleted = true;
+
+        //TBD 
+        OnPropertyChanged(nameof(IncompletedTodos));
+        OnPropertyChanged(nameof(CompletedTodos));
+    }
+
+    [RelayCommand]
+    void IncompleteTodo(TODO todo)
+    {
+        todo.IsCompleted = false;
 
         //TBD 
         OnPropertyChanged(nameof(IncompletedTodos));

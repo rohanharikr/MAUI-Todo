@@ -33,15 +33,15 @@
                             <FlexLayout AlignItems="Center" JustifyContent="Center" MinimumHeightRequest="50">
                                 <Entry FlexLayout.Grow="1" Text="{Binding Title}" IsReadOnly="False" HeightRequest="30" Margin="0,5,0,5" Keyboard="Plain" />
                                 <ImageButton
-                                    Command="{Binding Source={RelativeSource AncestorType={x:Type viewmodel:TaskViewModel}}, Path=DeleteTodoCommand}"
+                                    Command="{Binding Source={RelativeSource AncestorType={x:Type viewmodel:TaskViewModel}}, Path=CompleteTodoCommand}"
                                     CommandParameter="{Binding .}"
-                                    Source="delete.png" Padding="10" WidthRequest="5" HeightRequest="5" BackgroundColor="White"
+                                    Source="done.png" Padding="10" WidthRequest="5" HeightRequest="5" BackgroundColor="White"
                                     Margin="3,0,3,0"
                                     CornerRadius="5"/>
                                 <ImageButton
-                                    Command="{Binding Source={RelativeSource AncestorType={x:Type viewmodel:TaskViewModel}}, Path=CompleteTodoCommand}"
+                                    Command="{Binding Source={RelativeSource AncestorType={x:Type viewmodel:TaskViewModel}}, Path=DeleteTodoCommand}"
                                     CommandParameter="{Binding .}"
-                                    Source="done.png" Padding="10" WidthRequest="5" HeightRequest="5" BackgroundColor="White" CornerRadius="5"></ImageButton>
+                                    Source="delete.png" Padding="10" WidthRequest="5" HeightRequest="5" BackgroundColor="White" CornerRadius="5"></ImageButton>
                             </FlexLayout>
                         </VerticalStackLayout>
                     </DataTemplate>
