@@ -8,7 +8,7 @@ namespace TODOApp.ViewModels;
 public partial class TaskViewModel : ObservableObject
 {
     [ObservableProperty]
-	public string todo;
+	string todo;
 
     [ObservableProperty]
     bool addEnabled = false;
@@ -38,7 +38,7 @@ public partial class TaskViewModel : ObservableObject
     }
 
     [RelayCommand]
-	public void AddTodo()
+	void AddTodo()
 	{
         if (!AddEnabled)
             return;

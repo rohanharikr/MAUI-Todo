@@ -64,4 +64,19 @@ public class TaskViewModelTests
         Assert.DoesNotContain(todo, viewModel.IncompletedTodos);
         Assert.Contains(todo, viewModel.CompletedTodos);
     }
+
+    [Fact]
+    public void Mark_Todo_As_Incomplete()
+    {
+        var viewModel = new TaskViewModel();
+        var todo = new TODO { Id = Guid.NewGuid(), Title = "Hello World", IsCompleted = false };
+        viewModel.Todos.Add(todo);
+
+        viewModel.CompleteTodoCommand.Execute(todo);
+        viewModel.IncompleteTodoCommand.Execute(todo);
+
+        Assert.False(todo.IsCompleted);
+        Assert.DoesNotContain(todo, viewModel.IncompletedTodos);
+        Assert.Contains(todo, viewModel.CompletedTodos);
+    }
 }
