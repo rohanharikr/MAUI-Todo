@@ -29,9 +29,9 @@
             <CollectionView AutomationId="TodoList" ItemsSource="{Binding IncompletedTodos}" EmptyView="No Todos to display">
                 <CollectionView.ItemTemplate>
                     <DataTemplate x:DataType="model:TODO">
-                        <VerticalStackLayout AutomationId="Todo">
+                        <VerticalStackLayout>
                             <FlexLayout AlignItems="Center" JustifyContent="Center" MinimumHeightRequest="50">
-                                <Entry FlexLayout.Grow="1" Text="{Binding Title}" IsReadOnly="False" HeightRequest="30" Margin="0,5,0,5" Keyboard="Plain" />
+                                <Entry AutomationId="TodoItem" FlexLayout.Grow="1" Text="{Binding Title}" IsReadOnly="False" HeightRequest="30" Margin="0,5,0,5" Keyboard="Plain" />
                                 <ImageButton
                                     Command="{Binding Source={RelativeSource AncestorType={x:Type viewmodel:TaskViewModel}}, Path=CompleteTodoCommand}"
                                     CommandParameter="{Binding .}"
