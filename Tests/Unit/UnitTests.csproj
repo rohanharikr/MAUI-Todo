@@ -23,6 +23,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\Todo\Todo.csproj" />
+    <ProjectReference Include="..\..\Todo\Todo.csproj" />
   </ItemGroup>
 </Project>
