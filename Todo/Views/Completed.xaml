@@ -21,7 +21,7 @@
                             <FlexLayout AlignItems="Center" JustifyContent="Center" MinimumHeightRequest="50">
                                 <Entry AutomationId="TodoCompleteItemEntry" FlexLayout.Grow="1" Text="{Binding Title}" IsReadOnly="True" HeightRequest="30" Margin="0,5,0,5"/>
                                 <ImageButton
-                                    AutomationId="TodoItemIncompleteButton"
+                                    AutomationId="TodoCompleteItemIncompleteButton"
                                     Command="{Binding Source={RelativeSource AncestorType={x:Type viewmodel:TaskViewModel}}, Path=IncompleteTodoCommand}"
                                     CommandParameter="{Binding .}"
                                     Source="demote.png" Padding="10" WidthRequest="5" HeightRequest="5" BackgroundColor="White"

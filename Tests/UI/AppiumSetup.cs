@@ -12,6 +12,7 @@ public class AppiumSetup
     private static AppiumDriver? driver;
 
     public static AppiumDriver App => driver ?? throw new NullReferenceException("AppiumDriver is null");
+    public static string AppId = "com.companyname.todoapp";
 
     [OneTimeSetUp]
     public void RunBeforeAnyTests()
@@ -31,7 +32,7 @@ public class AppiumSetup
         };
 
         // Setting the Bundle ID is required, else the automation will run on Finder
-        macOptions.AddAdditionalAppiumOption(IOSMobileCapabilityType.BundleId, "com.companyname.todoapp");
+        macOptions.AddAdditionalAppiumOption(IOSMobileCapabilityType.BundleId, AppId);
 
         // Note there are many more options that you can use to influence the app under test according to your needs
 

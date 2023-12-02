@@ -28,8 +28,20 @@ public abstract class BaseTest
         return App.FindElements(MobileBy.Id(id)).ToList();
     }
 
+    // Looks like ActivateApp method has not yet been implemented
+    //[SetUp]
+    //public void StartApp()
+    //{
+    //    App.ActivateApp(AppiumSetup.AppId);
+    //}
+    //[TearDown]
+    //public void TerminateApp()
+    //{
+    //    App.TerminateApp(AppiumSetup.AppId);
+    //}
+
     [TearDown]
-    public void ResetApp()
+    public void TerminateApp()
     {
         App.ResetApp();
     }

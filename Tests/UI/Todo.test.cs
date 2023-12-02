@@ -1,4 +1,5 @@
 ﻿using NUnit.Framework;
+using OpenQA.Selenium;
 using OpenQA.Selenium.Appium;
 
 namespace UITests;
@@ -105,16 +106,16 @@ public class TodoTest : BaseTest
         Assert.IsEmpty(todos);
 
         completedPageTab.Click();
-        var todoCompleteItemDeleteButton = completedTodos.First().FindElement(MobileBy.Id("TodoCompleteItemDeleteButton"));
+        var todoCompleteItemIncompleteButton = completedTodos.First().FindElement(MobileBy.Id("TodoCompleteItemIncompleteButton"));
 
-        todoCompleteItemDeleteButton.Click();
+        todoCompleteItemIncompleteButton.Click();
 
         Assert.IsEmpty(completedTodos);
 
         homePageTab.Click();
 
-        var todoComplete = completedTodos.First().FindElement(MobileBy.Id("TodoCompleteItemEntry")).Text;
+        var todo = todos.First().FindElement(MobileBy.Id("TodoItemEntry")).Text;
 
-        Assert.That(todoComplete, Is.EqualTo("Hello World"));
+        Assert.That(todo, Is.EqualTo("Hello World"));
     }
 }
