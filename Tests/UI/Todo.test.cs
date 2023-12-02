@@ -23,9 +23,7 @@ public class TodoTest : BaseTest
     {
         AddTodo();
 
-        var todos = FindUIElements("TodoItem");
-        var todoItem = todos.First();
-        var todo = todoItem.FindElement(MobileBy.Id("TodoItemEntry")).Text;
+        var todo = todos.First().FindElement(MobileBy.Id("TodoItemEntry")).Text;
 
         Assert.That(todo, Is.EqualTo("Hello World"));
     }
@@ -56,13 +54,9 @@ public class TodoTest : BaseTest
     {
         AddTodo();
 
-        var todos = FindUIElements("TodoItem");
-        var todoItem = todos.First();
-        var todoItemDeleteButton = todoItem.FindElement(MobileBy.Id("TodoItemDeleteButton"));
+        var todoItemDeleteButton = todos.First().FindElement(MobileBy.Id("TodoItemDeleteButton"));
 
         todoItemDeleteButton.Click();
-
-        todos = FindUIElements("TodoItem");
 
         Assert.IsEmpty(todos);
     }
@@ -72,20 +66,14 @@ public class TodoTest : BaseTest
     {
         AddTodo();
 
-        var todos = FindUIElements("TodoItem");
-        var todoItem = todos.First();
-        var todoItemCompleteButton = todoItem.FindElement(MobileBy.Id("TodoItemCompleteButton"));
+        var todoItemCompleteButton = todos.First().FindElement(MobileBy.Id("TodoItemCompleteButton"));
 
         todoItemCompleteButton.Click();
-
-        todos = FindUIElements("TodoItem");
 
         Assert.IsEmpty(todos);
 
         completedPageTab.Click();
-        var completedTodos = FindUIElements("TodoCompleteItem");
-        var todoCompleteItem = completedTodos.First();
-        var todoComplete = todoCompleteItem.FindElement(MobileBy.Id("TodoCompleteItemEntry")).Text;
+        var todoComplete = completedTodos.First().FindElement(MobileBy.Id("TodoCompleteItemEntry")).Text;
 
         Assert.That(todoComplete, Is.EqualTo("Hello World"));
     }
@@ -94,20 +82,14 @@ public class TodoTest : BaseTest
     public void Delete_Complete_Todo()
     {
         AddTodo();
-        var todos = FindUIElements("TodoItem");
-        var todoItem = todos.First();
-        var todoItemCompleteButton = todoItem.FindElement(MobileBy.Id("TodoItemCompleteButton"));
+        var todoItemCompleteButton = todos.First().FindElement(MobileBy.Id("TodoItemCompleteButton"));
 
         todoItemCompleteButton.Click();
         completedPageTab.Click();
 
-        var completedTodos = FindUIElements("TodoCompleteItem");
-        var todoCompleteItem = completedTodos.First();
-        var todoItemDeleteButton = todoCompleteItem.FindElement(MobileBy.Id("TodoCompleteItemDeleteButton"));
+        var todoItemDeleteButton = completedTodos.First().FindElement(MobileBy.Id("TodoCompleteItemDeleteButton"));
 
         todoItemDeleteButton.Click();
-
-        completedTodos = FindUIElements("TodoCompleteItem");
 
         Assert.IsEmpty(completedTodos);
     }
@@ -116,32 +98,22 @@ public class TodoTest : BaseTest
     public void Mark_Todo_As_Incomplete()
     {
         AddTodo();
-        var todos = FindUIElements("TodoItem");
-        var todoItem = todos.First();
-        var todoItemCompleteButton = todoItem.FindElement(MobileBy.Id("TodoItemCompleteButton"));
+        var todoItemCompleteButton = todos.First().FindElement(MobileBy.Id("TodoItemCompleteButton"));
 
         todoItemCompleteButton.Click();
-
-        todos = FindUIElements("TodoItem");
 
         Assert.IsEmpty(todos);
 
         completedPageTab.Click();
-        var completedTodos = FindUIElements("TodoCompleteItem");
-        var todoCompleteItem = completedTodos.First();
-        var todoCompleteItemDeleteButton = todoCompleteItem.FindElement(MobileBy.Id("TodoCompleteItemDeleteButton"));
+        var todoCompleteItemDeleteButton = completedTodos.First().FindElement(MobileBy.Id("TodoCompleteItemDeleteButton"));
 
         todoCompleteItemDeleteButton.Click();
-
-        completedTodos = FindUIElements("TodoCompleteItem");
 
         Assert.IsEmpty(completedTodos);
 
         homePageTab.Click();
 
-        todos = FindUIElements("TodoItem");
-        todoItem = todos.First();
-        var todoComplete = todoItem.FindElement(MobileBy.Id("TodoCompleteItemEntry")).Text;
+        var todoComplete = completedTodos.First().FindElement(MobileBy.Id("TodoCompleteItemEntry")).Text;
 
         Assert.That(todoComplete, Is.EqualTo("Hello World"));
     }
