@@ -1,4 +1,5 @@
-﻿using OpenQA.Selenium.Appium;
+﻿using NUnit.Framework;
+using OpenQA.Selenium.Appium;
 using OpenQA.Selenium.Appium.Windows;
 
 namespace UITests;
@@ -25,5 +26,11 @@ public abstract class BaseTest
         }
 
         return App.FindElements(MobileBy.Id(id)).ToList();
+    }
+
+    [TearDown]
+    public void ResetApp()
+    {
+        App.ResetApp();
     }
 }

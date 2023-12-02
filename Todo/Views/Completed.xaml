@@ -17,16 +17,19 @@
             <CollectionView ItemsSource="{Binding CompletedTodos}" EmptyView="No Todos completed">
                 <CollectionView.ItemTemplate>
                     <DataTemplate x:DataType="model:TODO">
-                        <VerticalStackLayout>
+                        <VerticalStackLayout AutomationId="TodoCompleteItem">
                             <FlexLayout AlignItems="Center" JustifyContent="Center" MinimumHeightRequest="50">
-                                <Entry FlexLayout.Grow="1" Text="{Binding Title}" IsReadOnly="True" HeightRequest="30" Margin="0,5,0,5"/>
+                                <Entry AutomationId="TodoCompleteItemEntry" FlexLayout.Grow="1" Text="{Binding Title}" IsReadOnly="True" HeightRequest="30" Margin="0,5,0,5"/>
                                 <ImageButton
+                                    AutomationId="TodoItemIncompleteButton"
                                     Command="{Binding Source={RelativeSource AncestorType={x:Type viewmodel:TaskViewModel}}, Path=IncompleteTodoCommand}"
                                     CommandParameter="{Binding .}"
                                     Source="demote.png" Padding="10" WidthRequest="5" HeightRequest="5" BackgroundColor="White"
                                     Margin="3,0,3,0"
-                                    CornerRadius="5"/>
+                                    CornerRadius="5"
+                                    />
                                 <ImageButton
+                                    AutomationId="TodoCompleteItemDeleteButton"
                                     Command="{Binding Source={RelativeSource AncestorType={x:Type viewmodel:TaskViewModel}}, Path=DeleteTodoCommand}"
                                     CommandParameter="{Binding .}"
                                     Source="delete.png" Padding="10" WidthRequest="5" HeightRequest="5" BackgroundColor="White" CornerRadius="5"></ImageButton>

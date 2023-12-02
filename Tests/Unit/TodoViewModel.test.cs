@@ -40,20 +40,19 @@ public class TaskViewModelTests
     }
 
     [Fact]
-    public void Delete_Todo()
+    public void Delete_Incomplete_Todo()
     {
         var viewModel = new TaskViewModel();
         var todo = new TODO { Id = Guid.NewGuid(), Title = "Hello World", IsCompleted = false };
         viewModel.Todos.Add(todo);
 
         viewModel.DeleteTodoCommand.Execute(todo);
-        viewModel.DeleteTodoCommand.Execute(todo);
 
         Assert.Empty(viewModel.Todos);
     }
 
     [Fact]
-    public void Delete_Incomplete_Todo()
+    public void Delete_Complete_Todo()
     {
         var viewModel = new TaskViewModel();
         var todo = new TODO { Id = Guid.NewGuid(), Title = "Hello World", IsCompleted = false };

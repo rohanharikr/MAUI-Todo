@@ -7,16 +7,23 @@
     Shell.FlyoutBehavior="Disabled">
 
     <TabBar>
-        <ShellContent
+        <Tab
             Title="Home"
             Icon="todo.png"
-            ContentTemplate="{DataTemplate local:MainPage}"
-            Route="MainPage" />
-        <ShellContent
+            Route="MainPage"
+            AutomationId="HomePageTab"
+            >
+                <ShellContent ContentTemplate="{DataTemplate local:MainPage}"/>
+        </Tab>
+
+         <Tab
             Title="Completed"
             Icon="completed.png"
-            ContentTemplate="{DataTemplate local:Views.Completed}"
-            Route="Completed" />
+            Route="Completed"
+            AutomationId="CompletedPageTab"
+            >
+                <ShellContent ContentTemplate="{DataTemplate local:Views.Completed}"/>
+        </Tab>
     </TabBar>
 </Shell>
 
